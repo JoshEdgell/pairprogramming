@@ -37,8 +37,13 @@ function mix(s1, s2) {
     characters.push({letter: String.fromCharCode(i), frequency: count, string: foo});
   }
   characters.sort(function(a,b){
-    return b.frequency-a.frequency;
+    return b.string-a.string;
   })
+  console.log(characters, 'sorted by string');
+  characters.sort(function(a,b){
+    return b.frequency-a.frequency
+  })
+  console.log(characters);
   // Do the same thing with string 2
   // Whichever one has the higher value, put it into an object of arrays with length 3
   // In each array: character, frequency, and string
@@ -71,7 +76,7 @@ function mix(s1, s2) {
   return output
 }
 
-let string1 = 'aaaaa cccc dd';
+let string1 = 'aaaaa bbb cccc dd eee';
 let string2 = 'aaaa bbb dd';
 
 console.log(mix(string1, string2));
