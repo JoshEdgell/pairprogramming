@@ -3,57 +3,56 @@ const caesar = function(message, codeword) {
   //Apply those positions to the message
   //We'll get errors because the case won't be preserved, but we can fix those
 
-  //a = 1, b = 2, c = 3...
-  // String.charCodeAt(i);
-  // Create an array
-  let moves = [];
-  // Push letter positions into the moves array
-  for (let i = 97; i < 123; i++) {
-    moves.push(i);
-  }
   //Iterate through the codeword
   //The first character of 'codeword' is assigned to
   // j tells t how many to move forward
   //iterate through the message
 
-  //In 'codeword,' spit out first character's position
-
-
-  // console.log( codeword.charCodeAt(i) - 96 );
-  //.charCodeAt() gives us the ASCII position
-  //" - 96" subtracts to shift the ASCII postion back to the ALPHABET position
-
-  // moves.somemethod(codeword[0])
-
   // 'codeArray' is going to be the number of moves for each character in 'codeword'
+  codeword = codeword.toLowerCase();
   let codeArray = [];
   //Iterate through 'codeword'
   for (let i = 0; i < codeword.length; i++) {
     codeArray[i] = codeword.charCodeAt(i) - 96;
+
   }
+
+
 
 
   //Iterate through the 'message'
   //Apply the letter shifts from 'codeArray'
+  let encodedMessage = [];
+  let codeCounter = 0;
   for (let i = 0; i < message.length; i++) {
     //When i = 0, 't' + 'j'
-    // message[i] = String.fromCharCode(message.charCodeAt(i) + codeArray[i]);
-    message.slice(i,1,(String.fromCharCode(message.charCodeAt(i) + codeArray[i])))
-    console.log(message[i]);
+
+    // If a character is lower-case, do your magic
+    if ((message.charCodeAt(i) > 96 && message.charCodeAt(i) < 123) || ( message.charCodeAt(i) > 64 && message.charCodeAt(i) < 91 )) {
+
+      // If the stuff rolls past 'z', subtract 26
+
+      if (( message.charCodeAt(i) + codeArray[codeCounter] > 122) || ( message.charCodeAt(i) < 91 && message.charCodeAt(i) + codeArray[codeCounter] > 90 )) {
+        encodedMessage.push(String.fromCharCode(message.charCodeAt(i) + codeArray[codeCounter] - 26));
+      } else {
+        encodedMessage.push(String.fromCharCode(message.charCodeAt(i) + codeArray[codeCounter]));
+      }
+      codeCounter++;
+      if (codeCounter === 5) {
+        codeCounter = 0;
+      }
+      //If a character is non-alphabetic, ignore it and just push it into the array without changing it
+    } else {
+      encodedMessage.push(message[i])
+    }
   }
 
-  // console.log(message[0]);   // 't'
-  // console.log(codeArray[0]); // 10
-  // console.log(message[0] + codeArray[0]); // t10
-
-
-  return 'finished';
+  return encodedMessage.join('');
 }
 
-//                        1
-//              012345678901234567
-const phrase = 'taco cat is hungry';
-//              01234
-const secret = 'jamie';
+
+const phrase = 'This is a message, and I am sending it to you.';
+
+const secret = 'Jamie';
 
 console.log(caesar(phrase, secret));
