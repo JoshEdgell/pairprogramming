@@ -20,7 +20,7 @@ const sqInRect = function(length, width) {
       // console.log(width + ' is shorter than ' + length);
       // console.log('pushing width into the array');
       array.push(width);
-      length -= width;
+      length -= width;em
     } else {
       // console.log('it is a square of dimension ' + width)
       array.push(width);
