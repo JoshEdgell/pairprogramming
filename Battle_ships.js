@@ -58,8 +58,5 @@ var board = [[2, 0, 1, 0],
 [0, 0, 1, 0]];
 
 var attacks = [[3, 1], [3, 2], [3, 3]];
-<<<<<<< HEAD
+
 var result = damagedOrSunk(board, attacks);
-=======
-var result = damagedOrSunk(board, attacks);
->>>>>>> 299c8d242e5aceb51744f83d3bfdb128307f526f
